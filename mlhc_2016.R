@@ -21,43 +21,21 @@ data2012<- read.csv('/Users/oshpddata/Desktop/Mayana/ED_2012.csv')
 ##### Try for all different groups features -- begining with 
 
 
+Freq.Col.09 <- c("rln","NUM_ADMIT_2009","NUM_EDADMIT_2009","next_year_ed")
+Freq.Col.10 <- c("rln","NUM_ADMIT_2010","NUM_EDADMIT_2010","next_year_ed")
+Freq.Col.11 <- c("rln","NUM_ADMIT_2011","NUM_EDADMIT_2011","next_year_ed")
+Freq.Col.12 <- c("rln","NUM_ADMIT_2012","NUM_EDADMIT_2012","next_year_ed")
+
+Demog.Col = c("gender","race_grp","age_lt_5","age_5_14","age_15_24","age_25_44","age_45_64","age_gt_eq_65")
+         
+
+Dist.Col = c("distance_lt_eq_5", "distance_gt_20")
 
 
-AllCol = c("rln",
-           "gender","race_grp",
-          # "distance_lt_eq_5", "distance_gt_20",
-           "age_lt_5","age_5_14","age_15_24","age_25_44","age_45_64","age_gt_eq_65",
-           "NUM_ADMIT_2009",                     
-           "NUM_EDADMIT_2009",
-           #"ELIX_AIDS","ELIX_ALCOHOL","ELIX_ANEMDEF","ELIX_ARTH","ELIX_CHF","ELIX_COAG","ELIX_DEPRESS",                       
-           #"ELIX_DM","ELIX_DMCX","ELIX_DRUG","ELIX_HTN","ELIX_HYPOTHY","ELIX_LIVER","ELIX_LYMPH", "ELIX_LYTES",                         
-           #"ELIX_METS","ELIX_NEURO","ELIX_OBESE","ELIX_PARA","ELIX_PERIVASC","ELIX_PSYCH","ELIX_PULMCIRC","ELIX_RENLFAIL",                      
-           #"ELIX_TUMOR","ELIX_ULCER","ELIX_VALVE","ELIX_WGHTLOSS","ELIX_unclassified","MSDRG_0","MSDRG_1","MSDRG_2",                            
-           "next_year_ed")          
-
-AllCol0 = c("rln",
-            "gender","race_grp",
-            #"distance_lt_eq_5", "distance_gt_20",
-            "age_lt_5","age_5_14","age_15_24","age_25_44","age_45_64","age_gt_eq_65",
-            "NUM_ADMIT_2010",                     
-            "NUM_EDADMIT_2010",
-            #"ELIX_AIDS","ELIX_ALCOHOL","ELIX_ANEMDEF","ELIX_ARTH","ELIX_CHF","ELIX_COAG","ELIX_DEPRESS",                       
-            #"ELIX_DM","ELIX_DMCX","ELIX_DRUG","ELIX_HTN","ELIX_HYPOTHY","ELIX_LIVER","ELIX_LYMPH", "ELIX_LYTES",                         
-            #"ELIX_METS","ELIX_NEURO","ELIX_OBESE","ELIX_PARA","ELIX_PERIVASC","ELIX_PSYCH","ELIX_PULMCIRC","ELIX_RENLFAIL",                      
-            #"ELIX_TUMOR","ELIX_ULCER","ELIX_VALVE","ELIX_WGHTLOSS","ELIX_unclassified","MSDRG_0","MSDRG_1","MSDRG_2",                            
-            "next_year_ed") 
-
-AllCol1 = c("rln",
-            "gender","race_grp",
-            #"distance_lt_eq_5", "distance_gt_20",
-            "age_lt_5","age_5_14","age_15_24","age_25_44","age_45_64","age_gt_eq_65",
-            "NUM_ADMIT_2011",                     
-            "NUM_EDADMIT_2011",
-            #"ELIX_AIDS","ELIX_ALCOHOL","ELIX_ANEMDEF","ELIX_ARTH","ELIX_CHF","ELIX_COAG","ELIX_DEPRESS",                       
-            #"ELIX_DM","ELIX_DMCX","ELIX_DRUG","ELIX_HTN","ELIX_HYPOTHY","ELIX_LIVER","ELIX_LYMPH", "ELIX_LYTES",                         
-            #"ELIX_METS","ELIX_NEURO","ELIX_OBESE","ELIX_PARA","ELIX_PERIVASC","ELIX_PSYCH","ELIX_PULMCIRC","ELIX_RENLFAIL",                      
-            #"ELIX_TUMOR","ELIX_ULCER","ELIX_VALVE","ELIX_WGHTLOSS","ELIX_unclassified","MSDRG_0","MSDRG_1","MSDRG_2",                            
-            "next_year_ed") 
+Med.Col = c("ELIX_AIDS","ELIX_ALCOHOL","ELIX_ANEMDEF","ELIX_ARTH","ELIX_CHF","ELIX_COAG","ELIX_DEPRESS",                       
+            "ELIX_DM","ELIX_DMCX","ELIX_DRUG","ELIX_HTN","ELIX_HYPOTHY","ELIX_LIVER","ELIX_LYMPH", "ELIX_LYTES",                         
+            "ELIX_METS","ELIX_NEURO","ELIX_OBESE","ELIX_PARA","ELIX_PERIVASC","ELIX_PSYCH","ELIX_PULMCIRC","ELIX_RENLFAIL",                      
+            "ELIX_TUMOR","ELIX_ULCER","ELIX_VALVE","ELIX_WGHTLOSS","ELIX_unclassified","MSDRG_0","MSDRG_1","MSDRG_2") 
 
 AllCol2 = c("rln",
             "gender","race_grp",
@@ -84,7 +62,7 @@ pred.data2 <- rename(pred.data12, c("NUM_ADMIT_2012" ='num_admit',"NUM_EDADMIT_2
 
 
 ##Tranform Freq_Class columns to factor
-cols <-c(#'gender',"race_grp","age_lt_5","age_5_14","age_15_24","age_25_44","age_45_64","age_gt_eq_65", 
+cols <-c('gender',"race_grp","age_lt_5","age_5_14","age_15_24","age_25_44","age_45_64","age_gt_eq_65", 
          "next_year_ed") 
 Freq.ED[cols] <-  lapply(Freq.ED[cols], as.factor) 
 pred.data0[cols] <-  lapply(pred.data0[cols], as.factor)
@@ -100,7 +78,11 @@ summary(pred.data2)
 
 
 
+########## selecting a slice of the 2009-2010 dataset for parameter tunning
 
+intrain<-createDataPartition(y=Freq.ED$next_ed_admit,p=0.8,list=FALSE)
+training<-m_train[intrain,]
+testing<-m_train[-intrain,]
 
 
 
@@ -114,8 +96,8 @@ summary(pred.data2)
 #####Balanced
 
 
-Freq.ED.balanced1 <- Freq.ED[ sample( which(Freq.ED$next_year_ed=='1'), 15000), ]
-Freq.ED.balanced2 <- Freq.ED[ sample( which(Freq.ED$next_year_ed=='2'), 15000), ]
+Freq.ED.balanced1 <- Freq.ED[ sample( which(Freq.ED$next_year_ed=='1'), 45000), ]
+Freq.ED.balanced2 <- Freq.ED[ sample( which(Freq.ED$next_year_ed=='2'), 30000), ]
 Freq.ED.balanced3 <- Freq.ED[ sample( which(Freq.ED$next_year_ed=='3'), 15000), ]
 
 Freq.ED.balanced <- rbind(Freq.ED.balanced1, Freq.ED.balanced2 )
@@ -142,7 +124,18 @@ dt3<- prune(decision.tree3, cp=   decision.tree3$cptable[which.min(decision.tree
 #### Predicting for each year - 2010, 2011 and 2012 - using each model 
 dt1.preds2010 <- predict(dt1, pred.data0[,-which(colnames(pred.data0) %in% c("rln"))], type='class')
 dt1.preds2011 <- predict(dt1, pred.data1[,-which(colnames(pred.data1) %in% c("rln"))], type='class')
+
+
+
 dt1.preds2012 <- predict(dt1, pred.data2[,-which(colnames(pred.data2) %in% c("rln"))], type='class')
+dt1.probs2012 <- predict(dt1, pred.data2[,-which(colnames(pred.data2) %in% c("rln"))], type='prob')
+
+
+
+
+
+
+
 
 
 
