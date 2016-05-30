@@ -5,6 +5,24 @@ library(ROCR)
 # probs - probability prediction vector
 # true -  true values vector
 
+'''
+---------->>>>>> Input vectors:
+true -  true values vector(response variable vector)
+
+probs - probability prediction matrix, in this case,  the probabilities are a matrix with 3 columns. 
+
+Each column represents the probability for each class -- 
+when mapping to 1 vs. all
+each row represents each record`s probability to receive as prediction the same value from the true response variable.
+
+
+So to compute the per class AUC, it is used the positive label column from the prob matrix to compute it. 
+And I map the true vector to a binary vector. And those are the input to the AUC function I am using, from pROC library. 
+I tested the function from ROCR library as well, and it was outputting the same values. 
+I ended up choosing the pROC function.(random choice)
+
+'''
+
 ##multiclass AUC for 3-class classification
 Multiclass_AUC <- function(probs, true){
   #Mapping True Vector: positive class -> mapped to 1; negative class -> mapped to 0
